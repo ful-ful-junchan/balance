@@ -1094,6 +1094,16 @@ class Blueprint
     }
 
     /**
+     * Add a "soft delete columns
+     * @param string $column
+     * @return \Illuminate\Database\Schema\ColumnDefinition
+     */
+    public function softDeletesCol($column = 'is_delete')
+    {
+        return $this->tinyInteger($column);
+    }
+
+    /**
      * Add a "deleted at" timestamp for the table.
      *
      * @param  string  $column
