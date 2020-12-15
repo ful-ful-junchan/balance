@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\AppController;
 use App\Providers\RouteServiceProvider;
-use App\Models\UserAccountModel;
+use App\Models\UserAccount;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -60,11 +60,11 @@ class RegisterController extends AppController
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\Models\UserAccountModel
+     * @return \App\Models\UserAccount
      */
     protected function create(array $data)
     {
-        return UserAccountModel::create([
+        return UserAccount::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
