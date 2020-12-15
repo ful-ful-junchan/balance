@@ -49,13 +49,19 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#pablo">
+          {{-- アカウントメニュー --}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="now-ui-icons users_single-02"></i>
               <p>
-                <span class="d-lg-none d-md-block">Account</span>
+                <span class="d-lg-none d-md-block">{{ __('string.Account.Menu.Account') }}</span>
               </p>
             </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">{{ __('string.Account.Menu.Profile') }}</a>
+              <a class="dropdown-item" href="#">{{ __('string.Account.Menu.Settings') }}</a>
+              <a class="dropdown-item" href="{{ url('/logout') }}">{{ __('string.Auth.Logout') }}</a>
+            </div>
           </li>
         </ul>
       </div>

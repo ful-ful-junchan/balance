@@ -21,8 +21,7 @@ class BoostController extends AppController
      */
     public function index($name)
     {
-        exit("aaa = " . $name);
-        $this->_pageName = 'bootstrap.'.$name;
-        $this->render();
+        $templateName = 'bootstrap.'.$name;
+        return $this->render($templateName);
     }
 }
