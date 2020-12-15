@@ -19,12 +19,7 @@ Auth::routes();
 // Route::get('/bootstrap/{name}', 'BoostController@index')->name('bootstrap');
 
 // ルート
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 // ホーム
 Route::get('/home', 'HomeController@index')->name('home');

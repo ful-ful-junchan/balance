@@ -34,7 +34,11 @@ class AppController extends BaseController
         return true;
     }
 
-    protected function __construct(Request $request)
+    /**
+     * コンストラクタ
+     * @param Request $request
+     */
+    public function __construct(Request $request)
     {
         // ログインチェック
         if ($this->_isRequireAuthorize()) {
