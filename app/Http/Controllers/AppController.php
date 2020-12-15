@@ -87,8 +87,8 @@ class AppController extends BaseController
                 'icon' => 'text_caps-small',
             ],
         ];
-        $this->setView( 'sidebarList', $sidebarList );
-        $this->setView( 'currentSidebar', (isset($sidebarList[ $request->menuId ]) ? $sidebarList[ $request->menuId ] : current( $sidebarList ) ) );
+        $this->_setResponse( 'sidebarList', $sidebarList );
+        $this->_setResponse( 'currentSidebar', (isset($sidebarList[ $request->menuId ]) ? $sidebarList[ $request->menuId ] : current( $sidebarList ) ) );
     }
 
     /**

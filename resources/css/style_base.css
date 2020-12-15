@@ -1,7 +1,7 @@
 /**
  * テキストセンタリング
  */
-.txt-ccenter {
+.txt-center {
 	text-align: center;
 }
 .txt-right {
@@ -15,11 +15,14 @@
  * ブロックセンタリング
  */
 .block-center {
-	margin-bottom: auto;
+	margin-left: auto;
 	margin-right: auto;
 }
 .block-right {
 	margin-right: 0;
+}
+.block-left {
+	margin-left: 0;
 }
 .block-bottom {
 	margin-bottom: 0;

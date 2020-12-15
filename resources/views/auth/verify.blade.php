@@ -1,4 +1,4 @@
-@extends('layouts.site_common')
+@extends('layouts.layout_page_wide')
 
 @section('content')
 <div class="container">

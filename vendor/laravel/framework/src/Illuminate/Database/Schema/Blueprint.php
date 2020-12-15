@@ -1100,7 +1100,7 @@ class Blueprint
      */
     public function softDeletesCol($column = 'is_delete')
     {
-        return $this->tinyInteger($column);
+        return $this->tinyInteger($column)->default(0);
     }
 
     /**
