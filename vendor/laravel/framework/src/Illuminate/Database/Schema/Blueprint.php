@@ -15,6 +15,8 @@ class Blueprint
 {
     use Macroable;
 
+    const COLUMN_SOFT_DELETE = 'is_delete';
+
     /**
      * The table the blueprint describes.
      *
@@ -1098,9 +1100,18 @@ class Blueprint
      * @param string $column
      * @return \Illuminate\Database\Schema\ColumnDefinition
      */
-    public function softDeletesCol($column = 'is_delete')
+    public function softDeletesCol($column = self::COLUMN_SOFT_DELETE)
     {
-        return $this->tinyInteger($column)->default(0);
+        return $this->tinyInteger($column)->unsigned()->default(0);
+    }
+
+    /**
+     * Get Soft Delete Column Name.
+     * @return string
+     */
+    public function getSoftDeleteColumn()
+    {
+        return self::COLUMN_SOFT_DELETE;
     }
 
     /**

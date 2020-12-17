@@ -14,13 +14,16 @@ class CreateUserAccountTable extends Migration
     public function up()
     {
         Schema::create('user_account', function (Blueprint $table) {
-            $table->id('user_account_id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->integer('role')->default(0);
+            $table->id('user_account_id')->unsigned()->comment('PK');
+            $table->char('name', 100)->comment('使用者名');
+            $table->char('email', 255)->unique()->comment('メールアドレス（ログインID）');
+            $table->char('password', 255)->comment('パスワード');
+            $table->integer('role')->unsigned()->default(0)->comment('権限');
             $table->timestamps();
             $table->softDeletesCol();
+
+            // Index
+            $table->index(['email', $table->getSoftDeleteColumn()], 'idx_email');
         });
     }
 

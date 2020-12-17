@@ -13,6 +13,7 @@ class HomeController extends AppController
      */
     public function index()
     {
+//         var_dump(\Auth::user());
         return $this->render('home');
     }
 }
