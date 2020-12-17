@@ -18,7 +18,7 @@ class BankAccountTables extends Migration
             $table->char('name', 100)->comment('銀行口座名');
             $table->tinyInteger('bank_type')->unsigned()->comment('銀行種別');
             $table->timestamps();
-            $table->softDeletesCol();
+            $table->softDeletes();
         });
     }
 

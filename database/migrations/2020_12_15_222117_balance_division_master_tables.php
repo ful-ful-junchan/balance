@@ -21,7 +21,7 @@ class BalanceDivisionMasterTables extends Migration
             $table->integer('balance_division_item_id')->unique()->comment('収支小項目');
             $table->integer('payment_account_id')->unsigned();
             $table->timestamps();
-            $table->softDeletesCol();
+            $table->softDeletes();
         });
     }
 

@@ -19,10 +19,10 @@ class BalanceBookTables extends Migration
             $table->boolean('is_active')->unsigned()->default(1)->comment('有効／無効');
             $table->longText('comment')->comment('コメント');
             $table->timestamps();
-            $table->softDeletesCol();
+            $table->softDeletes();
 
             // Index
-            $table->index(['year', 'is_active', $table->getSoftDeleteColumn()], 'idx_year');
+            $table->index(['year', 'is_active'], 'idx_year');
         });
     }
 

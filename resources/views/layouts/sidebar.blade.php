@@ -8,15 +8,15 @@
   <div class="sidebar-wrapper" id="sidebar-wrapper">
     <ul class="nav">
       @foreach($sidebarList as $key => $sidebar)
-        @if ( $sidebar['id'] == $currentSidebar['id'] )
+        @if ( $sidebar['menu_master_id'] == $currentSidebar['menu_master_id'] )
           <li class="active">
         @else
           <li class="">
         @endif
 
-        <a href="{{ url($sidebar['url'] . '?menuId=' . $sidebar['id']) }}">
+        <a href="{{ url($sidebar['url'] . '?menuId=' . $sidebar['menu_master_id']) }}">
           <i class="now-ui-icons {{ $sidebar['icon'] }}"></i>
-          <p>{{ $sidebar['title'] }}</p>
+          <p>{{ $sidebar['menu_title'] }}</p>
         </a>
         </li>
       @endforeach

@@ -22,10 +22,10 @@ class BalanceDivisionEstimateTables extends Migration
             $table->dateTime('effective_end_date')->comment('適用終了日');
             $table->longText('comment')->comment('説明');
             $table->timestamps();
-            $table->softDeletesCol();
+            $table->softDeletes();
 
             // Index
-            $table->index(['balance_book_id', $table->getSoftDeleteColumn()], 'idx_book_id');
+            $table->index(['balance_book_id'], 'idx_book_id');
         });
     }
 

@@ -18,7 +18,7 @@ class CreditCardAccountTables extends Migration
             $table->char('name', 100)->comment('クレジットカード名');
             $table->tinyInteger('card_type')->unsigned()->comment('クレジットカード種別');
             $table->timestamps();
-            $table->softDeletesCol();
+            $table->softDeletes();
         });
     }
 

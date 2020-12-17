@@ -20,7 +20,7 @@ class CreditCardGroupMasterTables extends Migration
             $table->integer('balance_division_section_id')->unsigned()->comment('収支大項目');
             $table->integer('balance_division_item_id')->unique()->comment('収支小項目');
             $table->timestamps();
-            $table->softDeletesCol();
+            $table->softDeletes();
         });
     }
 
