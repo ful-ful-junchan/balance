@@ -20,10 +20,10 @@ class MonthlyBalanceDivisionResultsTables extends Migration
             $table->json('amount_json')->comment('入力金額json');
             $table->longText('comment')->comment('説明');
             $table->timestamps();
-            $table->softDeletesCol();
+            $table->softDeletes();
 
             // Index
-            $table->index(['balance_book_id', $table->getSoftDeleteColumn()], 'idx_book_id');
+            $table->index(['balance_book_id'], 'idx_book_id');
         });
     }
 

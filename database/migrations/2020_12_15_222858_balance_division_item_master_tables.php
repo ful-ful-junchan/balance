@@ -19,7 +19,7 @@ class BalanceDivisionItemMasterTables extends Migration
             $table->integer('balance_division_section_id')->unsigned()->comment('収支大項目ID');
             $table->longtext('comment')->comment('説明');
             $table->timestamps();
-            $table->softDeletesCol();
+            $table->softDeletes();
         });
     }
 

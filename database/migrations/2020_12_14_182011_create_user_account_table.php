@@ -20,10 +20,10 @@ class CreateUserAccountTable extends Migration
             $table->char('password', 255)->comment('パスワード');
             $table->integer('role')->unsigned()->default(0)->comment('権限');
             $table->timestamps();
-            $table->softDeletesCol();
+            $table->softDeletes();
 
             // Index
-            $table->index(['email', $table->getSoftDeleteColumn()], 'idx_email');
+            $table->index(['email'], 'idx_email');
         });
     }
 

@@ -14,13 +14,15 @@ class MenuMasterTables extends Migration
     public function up()
     {
         Schema::create('menu_master', function (Blueprint $table) {
-            $table->id('menu_master_id_id')->unsigned()->comment('PK');
+            $table->id('menu_master_id')->unsigned()->comment('PK');
             $table->tinyInteger('menu_type')->comment('メニュー種別');
-            $table->integer('parent_menu_master_id')->comment('親メニューID');
+            $table->integer('parent_menu_master_id')->default(0)->comment('親メニューID');
             $table->text('menu_title')->nullable(false)->comment('メニュータイトル');
-            $table->integer('sort')->comment('並び順（降順）');
+            $table->text('url')->comment('URLパス');
+            $table->text('icon')->comment('アイコン');
+            $table->integer('sort')->comment('並び順（昇順）');
             $table->timestamps();
-            $table->softDeletesCol();
+            $table->softDeletes();
         });
     }
 

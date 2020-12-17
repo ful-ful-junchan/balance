@@ -48,7 +48,7 @@ class AppController extends BaseController
 
         // サイドバーメニュー（一旦ベタ）
         $menuModel = new MenuModel();
-        $sidebarList = $menuModel->getSideMenuList();
+        $sidebarList = $menuModel->getMenuList();
         $this->_setResponse( 'sidebarList', $sidebarList );
         $this->_setResponse( 'currentSidebar', (isset($sidebarList[ $request->menuId ]) ? $sidebarList[ $request->menuId ] : current( $sidebarList ) ) );
     }

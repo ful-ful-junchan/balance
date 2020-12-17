@@ -18,7 +18,7 @@ class BalanceDivisionSectionMasterTables extends Migration
             $table->text('name')->comment('収支大項目名');
             $table->longtext('comment')->comment('説明');
             $table->timestamps();
-            $table->softDeletesCol();
+            $table->softDeletes();
         });
     }
 

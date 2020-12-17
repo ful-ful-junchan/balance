@@ -23,10 +23,10 @@ class PaymentAccountTables extends Migration
             $table->integer('initial_amount')->comment('初期金額');
             $table->dateTime('effective_start_date')->comment('使用開始日');
             $table->timestamps();
-            $table->softDeletesCol();
+            $table->softDeletes();
 
             // Index
-            $table->index(['balance_book_id', $table->getSoftDeleteColumn()], 'idx_book_id');
+            $table->index(['balance_book_id'], 'idx_book_id');
         });
     }
 

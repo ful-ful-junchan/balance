@@ -3,58 +3,62 @@
 namespace App\Models\Menu;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class MenuModel extends Model
 {
+    const MENU_TYPE_PARENT = 1; // 親メニュー
+    const MENU_TYPE_CHILDREN = 2; // 子メニュー
+
     /**
-     * サイドメニュー一覧を取得
-     * @return []
+     * テーブル名
+     * @var string
      */
-    public function getSideMenuList()
+    protected $table = 'menu_master';
+
+    /**
+     * プライマリID
+     * @var string
+     */
+    protected $primaryKey = 'menu_master_id';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'menu_type', 'parent_menu_master_id', 'menu_title', 'sort',
+    ];
+
+    /**
+     * メニュー種別リスト
+     * @return string[]
+     */
+    public function getMenuTypeList()
     {
         return [
-            1 => [
-                'id' => 1,
-                'title' => 'Dashboard',
-                'url' => '/bootstrap/home',
-                'icon' => 'design_app',
-            ],
-            2 => [
-                'id' => 2,
-                'title' => 'Icons',
-                'url' => '/bootstrap/icons',
-                'icon' => 'education_atom',
-            ],
-            3 => [
-                'id' => 3,
-                'title' => 'Maps',
-                'url' => '/bootstrap/map',
-                'icon' => 'location_map-big',
-            ],
-            4 => [
-                'id' => 4,
-                'title' => 'Notifications',
-                'url' => '/bootstrap/notifications',
-                'icon' => 'ui-1_bell-53',
-            ],
-            5 => [
-                'id' => 5,
-                'title' => 'User Profile',
-                'url' => '/bootstrap/user',
-                'icon' => 'users_single-02',
-            ],
-            6 => [
-                'id' => 6,
-                'title' => 'Table List',
-                'url' => '/bootstrap/tables',
-                'icon' => 'design_bullet-list-67',
-            ],
-            7 => [
-                'id' => 7,
-                'title' => 'Typography',
-                'url' => '/bootstrap/typography',
-                'icon' => 'text_caps-small',
-            ],
+            self::MENU_TYPE_PARENT => '親メニュー',
+            self::MENU_TYPE_CHILDREN => '子メニュー',
         ];
+    }
+
+    /**
+     * メニュー一覧を取得
+     * @return []
+     */
+    public function getMenuList()
+    {
+        $list = MenuModel::orderBy('sort', 'asc')->get()->toArray();
+        $menuListTmp = Arr::where($list, function( $value, $key ) { return $value['menu_type'] == MenuModel::MENU_TYPE_PARENT; });
+        $menuKey = Arr::pluck($menuListTmp, 'menu_master_id');
+        $menuList = array_combine($menuKey, $menuListTmp);
+        foreach($list as $data) {
+            if ($data['menu_type'] == MenuModel::MENU_TYPE_CHILDREN) {
+                if (!isset($menuList[ $data['menu_master_id'] ]['childMenuList'])) $menuList[ $data['menu_master_id'] ]['childMenuList'] = [];
+                $menuList[ $data['menu_master_id'] ]['childMenuList'][] = $data;
+            }
+        }
+        return $menuList;
     }
 }
