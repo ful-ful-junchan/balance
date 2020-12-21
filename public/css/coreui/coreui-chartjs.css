@@ -1,0 +1,105 @@
+@charset "UTF-8"; /*!* CoreUI Plugins - Chart.js for CoreUI 3
+* @version vv2.0.0-beta.0
+* @link https://coreui.io
+* Copyright (c) 2019 creativeLabs Łukasz Holeczek
+* Licensed under MIT (https://coreui.io/license/plugins/chart.js)*/
+/* Chart.js */
+/*
+ * DOM element rendering detection
+ * https://davidwalsh.name/detect-node-insertion
+ */
+@keyframes chartjs-render-animation {
+    from { opacity: 0.99; }
+    to { opacity: 1; }
+}
+
+.chartjs-render-monitor {
+    animation: chartjs-render-animation 0.001s;
+}
+
+/*
+ * DOM element resizing detection
+ * https://github.com/marcj/css-element-queries
+ */
+.chartjs-size-monitor,
+.chartjs-size-monitor-expand,
+.chartjs-size-monitor-shrink {
+    position: absolute;
+    direction: ltr;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+    visibility: hidden;
+    z-index: -1;
+}
+
+.chartjs-size-monitor-expand > div {
+    position: absolute;
+    width: 1000000px;
+    height: 1000000px;
+    left: 0;
+    top: 0;
+}
+
+.chartjs-size-monitor-shrink > div {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    left: 0;
+    top: 0;
+}
+
+
+.c-chartjs-tooltip {
+    position: absolute;
+    z-index: 1021;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: .25rem .5rem;
+    color: #fff;
+    pointer-events: none;
+    background: rgba(0, 0, 0, .7);
+    opacity: 0;
+    transition: all .25s ease;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    border-radius: .25rem
+}
+
+.c-chartjs-tooltip .c-tooltip-header {
+    margin-bottom: .5rem
+}
+
+.c-chartjs-tooltip .c-tooltip-header-item {
+    font-size: .765625rem;
+    font-weight: 700
+}
+
+.c-chartjs-tooltip .c-tooltip-body-item {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: .765625rem;
+    white-space: nowrap
+}
+
+.c-chartjs-tooltip .c-tooltip-body-item-color {
+    display: inline-block;
+    width: .875rem;
+    height: .875rem;
+    margin-right: .875rem
+}
+
+.c-chartjs-tooltip .c-tooltip-body-item-value {
+    padding-left: 1rem;
+    margin-left: auto;
+    font-weight: 700
+}
+
+

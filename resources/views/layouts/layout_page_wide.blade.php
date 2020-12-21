@@ -25,4 +25,7 @@
         {{-- 個別のjavaScript読み込み --}}
         @yield('javascript-footer')
     </body>
+
+    {{-- フッター部に記述するJavaScripts --}}
+    @include("layouts.javascripts")
 </html>

@@ -1,0 +1,16 @@
+@import 'style_base';
+
+/** サイドメニュー調整 */
+div.c-sidebar-nav-icon {
+	position: relative;
+}
+div.c-sidebar-nav-icon i {
+	position: absolute;
+	top: 0;
+	right: 15px;
+}
+
+/** カードタイトル */
+.card-header .title {
+	text-align: center !important;
+}

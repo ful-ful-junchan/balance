@@ -1,0 +1,15 @@
+/*
+ * パネルスタイル
+ */
+ #main-panel.main-panel-login {
+    float: left;
+    width: 100%;
+ }
+
+ #main-panel.main-panel-login .panel-header p {
+    color: white;
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    line-height: 0;
+ }

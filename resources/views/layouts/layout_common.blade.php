@@ -4,30 +4,37 @@
     @include("layouts.head")
 
     {{-- 本体 --}}
-    <body class="">
-        <div class="wrapper ">
-            {{-- サイドバー --}}
-            @include("layouts.sidebar")
+    <body class="c-app">
+      {{-- サイドバー --}}
+      @include("layouts.sidebar")
+      <div class="c-wrapper c-fixed-components">
 
-            {{-- コンテンツ --}}
-            <div class="main-panel @yield('main_style_id')" id="main-panel">
-            	{{-- ナビゲーションヘッダー --}}
-            	@include("layouts.navigation_header")
+        {{-- ナビゲーションヘッダー --}}
+        @include("layouts.navigation_header")
 
-            	{{-- コンテンツ本体 --}}
-                @yield('content')
-
-                {{-- フッター --}}
-                @yield('footer')
+        {{-- コンテンツ --}}
+        <div class="c-body">
+          <main class="c-main">
+            <div class="container-fluid">
+              {{-- コンテンツ本体 --}}
+              @yield('content')
             </div>
-        </div>
+          </main>
 
-        <script>
-            $(document).ready(function() {
-                bootstrap.initDashboardPageCharts();
-            });
-        </script>
-        {{-- 個別のjavaScript読み込み --}}
-        @yield('javascript-footer')
+          {{-- フッター --}}
+          @include("layouts.footer")
+        </div>
+      </div>
+
+      <script>
+        $(document).ready(function() {
+          bootstrap.initDashboardPageCharts();
+        });
+      </script>
+      {{-- 個別のjavaScript読み込み --}}
+      @yield('javascript-footer')
     </body>
+
+    {{-- フッター部に記述するJavaScripts --}}
+    @include("layouts.javascripts")
 </html>

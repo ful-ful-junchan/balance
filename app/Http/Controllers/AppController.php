@@ -50,7 +50,7 @@ class AppController extends BaseController
         $menuModel = new MenuModel();
         $sidebarList = $menuModel->getMenuList();
         $this->_setResponse( 'sidebarList', $sidebarList );
-        $this->_setResponse( 'currentSidebar', (isset($sidebarList[ $request->menuId ]) ? $sidebarList[ $request->menuId ] : current( $sidebarList ) ) );
+        $this->_setResponse( 'menuSectionList', $menuModel->getSectionList( $request->menuId ) );
     }
 
     /**

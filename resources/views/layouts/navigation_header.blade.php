@@ -1,70 +1,82 @@
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
-    <div class="container-fluid">
-      <div class="navbar-wrapper">
-        <div class="navbar-toggle">
-          <button type="button" class="navbar-toggler">
-            <span class="navbar-toggler-bar bar1"></span>
-            <span class="navbar-toggler-bar bar2"></span>
-            <span class="navbar-toggler-bar bar3"></span>
-          </button>
+<header class="c-header c-header-light c-header-fixed c-header-with-subheader">
+    <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
+      <svg class="c-icon c-icon-lg">
+        <use xlink:href="{{ asset('img/sprites/free.svg#cil-menu') }}"></use>
+      </svg>
+    </button><a class="c-header-brand d-lg-none" href="#">
+      <svg width="118" height="46" alt="CoreUI Logo">
+        <use xlink:href="assets/brand/coreui.svg#full"></use>
+      </svg></a>
+    <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
+      <svg class="c-icon c-icon-lg">
+        <use xlink:href="{{ asset('img/sprites/free.svg#cil-menu') }}"></use>
+      </svg>
+    </button>
+    <ul class="c-header-nav d-md-down-none">
+      <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Dashboard</a></li>
+      <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Users</a></li>
+      <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Settings</a></li>
+    </ul>
+    <ul class="c-header-nav ml-auto mr-4">
+      <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
+          <svg class="c-icon">
+            <use xlink:href="{{ asset('img/sprites/free.svg#cil-bell') }}"></use>
+          </svg></a></li>
+      <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
+          <svg class="c-icon">
+            <use xlink:href="{{ asset('img/sprites/free.svg#cil-list-rich') }}"></use>
+          </svg></a></li>
+      <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
+          <svg class="c-icon">
+            <use xlink:href="{{ asset('img/sprites/free.svg#cil-envelope-open') }}"></use>
+          </svg></a></li>
+      <li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          <div class="c-avatar"><img class="c-avatar-img" src="{{ asset('img/avatars/6.jpg') }}" alt="user@email.com"></div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right pt-0">
+          <div class="dropdown-header bg-light py-2"><strong>Account</strong></div><a class="dropdown-item" href="#">
+            <svg class="c-icon mr-2">
+              <use xlink:href="{{ asset('img/sprites/free.svg#cil-bell') }}"></use>
+            </svg> Updates<span class="badge badge-info ml-auto">42</span></a><a class="dropdown-item" href="#">
+            <svg class="c-icon mr-2">
+              <use xlink:href="{{ asset('img/sprites/free.svg#cil-envelope-open') }}"></use>
+            </svg> Messages<span class="badge badge-success ml-auto">42</span></a><a class="dropdown-item" href="#">
+            <svg class="c-icon mr-2">
+              <use xlink:href="{{ asset('img/sprites/free.svg#cil-task') }}"></use>
+            </svg> Tasks<span class="badge badge-danger ml-auto">42</span></a><a class="dropdown-item" href="#">
+            <svg class="c-icon mr-2">
+              <use xlink:href="{{ asset('img/sprites/free.svg#cil-comment-square') }}"></use>
+            </svg> Comments<span class="badge badge-warning ml-auto">42</span></a>
+          <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div><a class="dropdown-item" href="#">
+            <svg class="c-icon mr-2">
+              <use xlink:href="{{ asset('img/sprites/free.svg#cil-user') }}"></use>
+            </svg> Profile</a><a class="dropdown-item" href="#">
+            <svg class="c-icon mr-2">
+              <use xlink:href="{{ asset('img/sprites/free.svg#cil-settings') }}"></use>
+            </svg> Settings</a><a class="dropdown-item" href="#">
+            <svg class="c-icon mr-2">
+              <use xlink:href="{{ asset('img/sprites/free.svg#cil-credit-card') }}"></use>
+            </svg> Payments<span class="badge badge-secondary ml-auto">42</span></a><a class="dropdown-item" href="#">
+            <svg class="c-icon mr-2">
+              <use xlink:href="{{ asset('img/sprites/free.svg#cil-file') }}"></use>
+            </svg> Projects<span class="badge badge-primary ml-auto">42</span></a>
+          <div class="dropdown-divider"></div><a class="dropdown-item" href="#">
+            <svg class="c-icon mr-2">
+              <use xlink:href="{{ asset('img/sprites/free.svg#cil-lock-locked') }}"></use>
+            </svg> Lock Account</a><a class="dropdown-item" href="#">
+            <svg class="c-icon mr-2">
+              <use xlink:href="{{ asset('img/sprites/free.svg#cil-account-logout') }}"></use>
+            </svg> Logout</a>
         </div>
-        <a class="navbar-brand" href="#pablo">{{ $currentSidebar['menu_title'] }}</a>
-      </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-bar navbar-kebab"></span>
-        <span class="navbar-toggler-bar navbar-kebab"></span>
-        <span class="navbar-toggler-bar navbar-kebab"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navigation">
-        <form>
-          <div class="input-group no-border">
-            <input type="text" value="" class="form-control" placeholder="Search...">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <i class="now-ui-icons ui-1_zoom-bold"></i>
-              </div>
-            </div>
-          </div>
-        </form>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#pablo">
-              <i class="now-ui-icons media-2_sound-wave"></i>
-              <p>
-                <span class="d-lg-none d-md-block">Stats</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="now-ui-icons location_world"></i>
-              <p>
-                <span class="d-lg-none d-md-block">Some Actions</span>
-              </p>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-          {{-- アカウントメニュー --}}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>
-                <span class="d-lg-none d-md-block">{{ __('string.Account.Menu.Account') }}</span>
-              </p>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">{{ __('string.Account.Menu.Profile') }}</a>
-              <a class="dropdown-item" href="#">{{ __('string.Account.Menu.Settings') }}</a>
-              <a class="dropdown-item" href="{{ url('/logout') }}">{{ __('string.Auth.Logout') }}</a>
-            </div>
-          </li>
-        </ul>
-      </div>
+      </li>
+    </ul>
+    <div class="c-subheader px-3">
+      <!-- Breadcrumb-->
+      <ol class="breadcrumb border-0 m-0">
+        <li class="breadcrumb-item">Home</li>
+        <li class="breadcrumb-item"><a href="#">Admin</a></li>
+        <li class="breadcrumb-item active">Dashboard</li>
+        <!-- Breadcrumb Menu-->
+      </ol>
     </div>
-</nav>
-<!-- End Navbar -->
+  </header>
