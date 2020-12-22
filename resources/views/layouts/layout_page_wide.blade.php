@@ -4,26 +4,12 @@
     @include("layouts.head")
 
     {{-- 本体 --}}
-    <body class="">
-        <div class="wrapper ">
+    <body class="c-app @yield('main_style_class')">
+      {{-- コンテンツ本体 --}}
+      @yield('content')
 
-            {{-- コンテンツ --}}
-            <div class="main-panel @yield('main_style_id')" id="main-panel">
-            	{{-- コンテンツ本体 --}}
-                @yield('content')
-
-                {{-- フッター --}}
-                @yield('footer')
-            </div>
-        </div>
-
-        <script>
-            $(document).ready(function() {
-                bootstrap.initDashboardPageCharts();
-            });
-        </script>
-        {{-- 個別のjavaScript読み込み --}}
-        @yield('javascript-footer')
+      {{-- 個別のjavaScript読み込み --}}
+      @yield('javascript-footer')
     </body>
 
     {{-- フッター部に記述するJavaScripts --}}

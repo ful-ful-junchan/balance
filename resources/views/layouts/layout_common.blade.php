@@ -4,7 +4,7 @@
     @include("layouts.head")
 
     {{-- 本体 --}}
-    <body class="c-app">
+    <body class="c-app @yield('main_style_class')">
       {{-- サイドバー --}}
       @include("layouts.sidebar")
       <div class="c-wrapper c-fixed-components">
@@ -14,12 +14,8 @@
 
         {{-- コンテンツ --}}
         <div class="c-body">
-          <main class="c-main">
-            <div class="container-fluid">
-              {{-- コンテンツ本体 --}}
-              @yield('content')
-            </div>
-          </main>
+          {{-- コンテンツ本体 --}}
+          @yield('content')
 
           {{-- フッター --}}
           @include("layouts.footer")

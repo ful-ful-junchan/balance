@@ -7,11 +7,14 @@
 
 {{-- 個別CSS追加エリア --}}
 @section('css')
+<link href="{{ asset('css/coreui/coreui-chartjs.css') }}?t=1" rel="stylesheet">
 @endsection
 
 
 {{-- ここからページ本体のコード --}}
 @section('content')
+        <main class="c-main">
+          <div class="container-fluid">
             <div class="fade-in">
               <div class="row">
                 <div class="col-sm-6 col-lg-3">
@@ -658,6 +661,8 @@
               </div>
               <!-- /.row-->
             </div>
+          </div>
+        </main>
 {{-- ここまでページ本体のコード --}}
 @endsection
 

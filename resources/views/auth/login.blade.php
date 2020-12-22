@@ -12,72 +12,59 @@
 
 
 {{-- メインスタイル用ID --}}
-@section('main_style_id')
-main-panel-login
+@section('main_style_class')
+flex-row align-items-center
 @endsection
 
 
 {{-- ここからページ本体のコード --}}
 @section('content')
 
-<div class="panel-header panel-header-sm">
-	<p>{{ config('app.name') }}</p>
-</div>
-<div class="content">
-    <div class="row">
-    	<div class="col-md-5 block-center mg-top-100">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="title">ログイン</h5>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card-group">
+        <div class="card p-4">
+          <div class="card-body">
+            <form method="POST" action="{{ url('/login') }}">
+              @csrf
+              <h1>ログイン</h1>
+              <p class="text-muted">メールアドレスとパスワードを入力してください</p>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="{{ asset('img/sprites/free.svg#cil-user') }}"></use>
+                    </svg>
+                  </span>
+                </div>
+                <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror" alue="{{ old('email') }}" required placeholder="{{ __('string.Auth.E-Mail Address') }}">
               </div>
-              <div class="card-body">
-                <form method="POST" action="{{ url('/login') }}">
-                  @csrf
-
-                  <div class="form-group row">
-                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('string.Auth.E-Mail Address') }}</label>
-
-                    <div class="col-md-6">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('string.Auth.Password') }}</label>
-
-                    <div class="col-md-6">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                 </div>
-
-                 <div class="form-group row">
-                  	<div class="col-md-6 txt-right">
-                  	  <button type="submit" class="btn btn-round btn-primary">{{ __('string.Auth.Login') }}</button>
-                  	</div>
-                  	<div class="col-md-4">
-                  	  <a href="{{ url('/register') }}" class="btn btn-round btn-info">{{ __('string.Auth.Register') }}</a>
-                  	</div>
-                  </div>
-                </form>
+              <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="{{ asset('img/sprites/free.svg#cil-lock-locked') }}"></use>
+                    </svg>
+                  </span>
+                </div>
+                <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" required placeholder="{{ __('string.Auth.Password') }}">
               </div>
-            </div>
+              <div class="row">
+                <div class="col-6">
+                  <button class="btn btn-primary px-4" type="submit">{{ __('string.Auth.Login') }}</button>
+                </div>
+                <div class="col-6 text-right">
+                  <a href="{{ url('/register') }}" class="btn btn-secondary">{{ __('string.Auth.Register') }}</a>
+                </div>
+              </div>
+            </form>
           </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-
-{{-- フッター --}}
-@include("layouts.footer")
 
 {{-- ここまでページ本体のコード --}}
 @endsection
