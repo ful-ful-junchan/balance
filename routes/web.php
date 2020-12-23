@@ -26,7 +26,8 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/bootstrap/{name}', 'BoostController@index')->name('bootstrap');
 
 // ルート
-Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'WelcomeController@index')->name('welcome');
 
 // ホーム
 Route::get('/home', 'HomeController@index')->name('home');

@@ -1,25 +1,41 @@
-<div class="sidebar" data-color="orange">
-<!--
-    Color Type: blue | green | orange | red | yellow
--->
-  <div class="logo">
-    <a href="#" class="simple-text logo-normal">{{ config('app.name', 'Title None') }}</a>
+<div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
+  {{-- ロゴ --}}
+  <div class="c-sidebar-brand d-lg-down-none">
+    <svg class="c-sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
+      <use xlink:href="assets/brand/coreui.svg#full"></use>
+    </svg>
+    <svg class="c-sidebar-brand-minimized" width="46" height="46" alt="CoreUI Logo">
+      <use xlink:href="assets/brand/coreui.svg#signet"></use>
+    </svg>
   </div>
-  <div class="sidebar-wrapper" id="sidebar-wrapper">
-    <ul class="nav">
-      @foreach($sidebarList as $key => $sidebar)
-        @if ( $sidebar['menu_master_id'] == $currentSidebar['menu_master_id'] )
-          <li class="active">
-        @else
-          <li class="">
-        @endif
-
-        <a href="{{ url($sidebar['url'] . '?menuId=' . $sidebar['menu_master_id']) }}">
-          <i class="now-ui-icons {{ $sidebar['icon'] }}"></i>
-          <p>{{ $sidebar['menu_title'] }}</p>
-        </a>
+  {{-- サイドバー --}}
+  <ul class="c-sidebar-nav">
+    @foreach($sidebarList as $sectionType => $sidebarList2)
+      <li class="c-sidebar-nav-title">{{ $menuSectionList[$sectionType] }}</li>
+      @foreach($sidebarList2 as $menuMasterId => $sidebar)
+        {{-- 親メニュー --}}
+        <li class="{{ $sidebar['tag_li_class'] }}">
+          <a class="{{ $sidebar['tag_a_class'] }}" href="{{ $sidebar['url'] }}">
+            {{-- 親メニュー --}}
+            <div class="c-sidebar-nav-icon">
+              <i class="{{ $sidebar['icon'] }}"></i>
+            </div>
+            {{ $sidebar['menu_title'] }}
+          </a>
+          @if ( $sidebar['is_dropdown'] )
+            <ul class="c-sidebar-nav-dropdown-items">
+              @foreach( $sidebar['childMenuList'] as $items )
+                <li class="{{ $items['tag_li_class'] }}">
+                  <a class="{{ $items['tag_a_class'] }}" href="{{ $items['url'] }}">
+                    <i class="{{ $items['icon'] }}"></i>　{{ $items['menu_title'] }}
+                  </a>
+                </li>
+              @endforeach
+            </ul>
+          @endif
         </li>
       @endforeach
-    </ul>
-  </div>
+    @endforeach
+  </ul>
+  <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
 </div>
