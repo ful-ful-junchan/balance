@@ -20,14 +20,9 @@ Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('r
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
 // 認証 - ログアウト
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-// Auth::routes();
-
-// サンプル
-Route::get('/bootstrap/{name}', 'BoostController@index')->name('bootstrap');
 
 // ルート
-// Route::get('/', 'HomeController@index')->name('home');
-Route::get('/', 'WelcomeController@index')->name('welcome');
+Route::get('/', 'HomeController@index')->name('home');
 
 // ホーム
 Route::get('/home', 'HomeController@index')->name('home');
