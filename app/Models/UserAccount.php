@@ -12,7 +12,7 @@ class UserAccount extends Authenticatable
 
     /** Const Role **/
     const ROLE_ROOT = 99; // システム管理者
-    const ROLE_INIT = 0; // 登録時
+    const ROLE_INIT = 1; // 登録時
     const ROLE_GENERAL = 50; // 一般使用者
     const ROLE_ADMIN = 90; // 管理者
     const ROLE_LIST = [

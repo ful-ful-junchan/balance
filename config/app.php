@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Menu\MenuModel;
+
 return [
 
     /*
@@ -228,6 +230,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /**
+         * Model内の定数を使う場合のエイリアス
+         */
+        'MenuModel' => MenuModel::class,
     ],
 
 ];

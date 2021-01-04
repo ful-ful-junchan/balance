@@ -119,3 +119,31 @@
 .mg-bottom-100 {
     margin-bottom: 100px;
 }
+
+/**
+ * フォンtサイズ
+ **/
+.fnt-xxsmall {
+    font-size: 0.4em;
+}
+.fnt-xsmall {
+    font-size: 0.6em;
+}
+.fnt-small {
+    font-size: 0.8em;
+}
+.fnt-normal {
+    font-size: 1.0em;
+}
+.fnt-medium {
+    font-size: 1.2em;
+}
+.fnt-large {
+    font-size: 1.4em;
+}
+.fnt-xlarge {
+    font-size: 1.6em;
+}
+.fnt-xxlarge {
+    font-size: 1.8em;
+}

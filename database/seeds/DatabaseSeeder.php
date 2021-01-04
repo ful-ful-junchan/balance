@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserAccountSeeder::class);
         $this->call(MenuMasterSeeder::class);
+        $this->call(IconMasterSeeder::class);
     }
 }

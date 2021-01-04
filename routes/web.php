@@ -26,3 +26,16 @@ Route::get('/', 'HomeController@index')->name('home');
 
 // ホーム
 Route::get('/home', 'HomeController@index')->name('home');
+
+/***************************************
+ * メニュー
+ ***************************************/
+Route::prefix('menu')->group(function () {
+    Route::get('/List', 'Menu\MenuController@menuList')->name('menu_list');
+    Route::get('/Add', 'Menu\MenuController@addShow')->name('menu_addShow');
+    Route::post('/Add', 'Menu\MenuController@add')->name('menu_add');
+    Route::get('/Edit/{menuId}', 'Menu\MenuController@editShow')->name('menu_editShow');
+    Route::post('/Edit/{menuId}', 'Menu\MenuController@edit')->name('menu_edit');
+    Route::get('/Delete', 'Menu\MenuController@delShow')->name('menu_delShow');
+    Route::post('/Delete', 'Menu\MenuController@delete')->name('menu_del');
+});

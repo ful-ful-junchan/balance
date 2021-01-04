@@ -49,9 +49,9 @@ class MenuMasterSeeder extends Seeder
             /*
              * Settingセクション
              */
-            ['menu_master_id' => '5000', 'section_type' => MenuModel::SECTION_TYPE_SETTINGS, 'menu_type' => MenuModel::MENU_TYPE_PARENT, 'parent_menu_master_id' => 0, 'menu_title' => 'Menu', 'url' => '', 'icon' => 'cil-menu', 'order' => '5000'],
+            ['menu_master_id' => '5000', 'section_type' => MenuModel::SECTION_TYPE_SETTINGS, 'menu_type' => MenuModel::MENU_TYPE_PARENT, 'parent_menu_master_id' => 0, 'menu_title' => 'メニュー', 'url' => '', 'icon' => 'cil-menu', 'order' => '5000'],
             // メニュー管理
-            ['menu_master_id' => '5001', 'section_type' => MenuModel::SECTION_TYPE_SETTINGS, 'menu_type' => MenuModel::MENU_TYPE_CHILDREN, 'parent_menu_master_id' => 5000, 'menu_title' => 'Menu List', 'url' => '/menu/MenuList', 'icon' => 'cil-menu', 'order' => '5001'],
+            ['menu_master_id' => '5001', 'section_type' => MenuModel::SECTION_TYPE_SETTINGS, 'menu_type' => MenuModel::MENU_TYPE_CHILDREN, 'parent_menu_master_id' => 5000, 'menu_title' => 'メニュー一覧', 'url' => '/menu/MenuList', 'icon' => 'cil-menu', 'order' => '5001'],
 
         ];
         foreach($datas as $data) {

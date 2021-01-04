@@ -6,7 +6,7 @@ return [
     'Auth.Login' => 'ログイン',
     'Auth.Logout' => 'ログアウト',
     'Auth.Register' => '新規登録',
-    'Auth.Name' => 'Name',
+    'Auth.Name' => '氏名',
     'Auth.E-Mail Address' => 'E-Mail Address',
     'Auth.Password' => 'Password',
     'Auth.Confirm Password' => 'Confirm Password',

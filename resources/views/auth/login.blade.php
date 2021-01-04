@@ -34,11 +34,14 @@ flex-row align-items-center
                 <div class="input-group-prepend">
                   <span class="input-group-text">
                     <svg class="c-icon">
-                      <use xlink:href="{{ asset('img/sprites/free.svg#cil-user') }}"></use>
+                      <use xlink:href="{{ asset('img/sprites/free.svg#cil-envelope-open') }}"></use>
                     </svg>
                   </span>
                 </div>
                 <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror" alue="{{ old('email') }}" required placeholder="{{ __('string.Auth.E-Mail Address') }}">
+                @if ($errors->first('email'))
+                  <div class="invalid-feedback validation">{{$errors->first('email')}}</div>
+                @endif
               </div>
               <div class="input-group mb-4">
                 <div class="input-group-prepend">
@@ -49,6 +52,9 @@ flex-row align-items-center
                   </span>
                 </div>
                 <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" required placeholder="{{ __('string.Auth.Password') }}">
+                @if ($errors->first('password'))
+                  <div class="invalid-feedback validation">{{$errors->first('password')}}</div>
+                @endif
               </div>
               <div class="row">
                 <div class="col-6">

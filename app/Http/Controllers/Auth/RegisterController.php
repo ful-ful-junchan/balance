@@ -42,6 +42,16 @@ class RegisterController extends AppController
     }
 
     /**
+     *
+     */
+    public function showRegistrationForm()
+    {
+        $this->_setResponse('roleList', UserAccount::ROLE_LIST);
+
+        return $this->render('auth.register');
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data

@@ -22,13 +22,13 @@ class MenuModel extends Model
      * テーブル名
      * @var string
      */
-    protected $table = 'menu_master';
+    public $table = 'menu_master';
 
     /**
      * プライマリID
      * @var string
      */
-    protected $primaryKey = 'menu_master_id';
+    public $primaryKey = 'menu_master_id';
 
     /**
      * The attributes that are mass assignable.
@@ -47,7 +47,7 @@ class MenuModel extends Model
     {
         return [
             self::SECTION_TYPE_BALANCE => '家計簿',
-            self::SECTION_TYPE_SETTINGS => 'Settings',
+            self::SECTION_TYPE_SETTINGS => '設定',
             self::SECTION_TYPE_ADMIN => '管理者用',
         ];
     }
@@ -65,15 +65,33 @@ class MenuModel extends Model
     }
 
     /**
+     * 親メニュー一覧を取得
+     * @return object
+     */
+    public function getParentMenuList()
+    {
+        return MenuModel::where('menu_type', self::MENU_TYPE_PARENT)->orderBy('order', 'asc')->get();
+    }
+
+    /**
+     * 指定したメニュー情報を取得
+     * @param int $menuId
+     * @return object
+     */
+    public function getMenu( $menuId )
+    {
+        return MenuModel::where($this->primaryKey, $menuId)->first();
+    }
+
+    /**
      * メニュー一覧を取得
      * @param integer $currentMenuId
      * @return []
      */
     public function getMenuList( $currentMenuId = 0 )
     {
-        $list = MenuModel::orderBy('order', 'asc')->get()->toArray();
-        $menuListParent = Arr::where($list, function( $value, $key ) { return $value['menu_type'] == MenuModel::MENU_TYPE_PARENT; });
-        $menuListChildren = Arr::where($list, function( $value, $key ) { return $value['menu_type'] == MenuModel::MENU_TYPE_CHILDREN; });
+        $menuListChildren = MenuModel::where('menu_type', self::MENU_TYPE_CHILDREN)->orderBy('order', 'asc')->get()->toArray();
+        $menuListParent = $this->getParentMenuList()->toArray();
         $menuList = [];
 
         // 親メニューを生成
@@ -84,7 +102,7 @@ class MenuModel extends Model
 
             // 現在のメニューをセット
             $menu['is_current'] = false;
-            if ($currentMenuId == $menu['menu_master_id']) $menu[ 'is_current' ] = true;
+            if ($currentMenuId == $menu[$this->primaryKey]) $menu[ 'is_current' ] = true;
 
             // ドロップダウンフラグ
             $menu['is_dropdown'] = false;
@@ -92,7 +110,7 @@ class MenuModel extends Model
             // 表示用にURLを整形
             $this->setUrl($menu);
 
-            $menuList[ $menu['section_type'] ][ $menu['menu_master_id'] ] = $menu;
+            $menuList[ $menu['section_type'] ][ $menu[$this->primaryKey] ] = $menu;
         }
 
         // 子メニューを生成
@@ -113,7 +131,7 @@ class MenuModel extends Model
 
             // 現在のメニューをセット
             $menu['is_current'] = false;
-            if ($currentMenuId == $menu['menu_master_id']) {
+            if ($currentMenuId == $menu[$this->primaryKey]) {
                 $menu['is_current'] = true;
                 $menu['tag_a_class'] .= " c-active";
                 $menuList[$sectionType][$menuMasterId]['is_current'] = true;

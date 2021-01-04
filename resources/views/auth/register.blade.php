@@ -12,94 +12,105 @@
 
 
 {{-- メインスタイル用ID --}}
-@section('main_style_id')
-main-panel-login
+@section('main_style_class')
+flex-row align-items-center
 @endsection
 
 
 {{-- ここからページ本体のコード --}}
 @section('content')
 
-<div class="panel-header panel-header-sm">
-	<p>{{ config('app.name') }}</p>
-</div>
-<div class="content">
-    <div class="row">
-    	<div class="col-md-5 block-center mg-top-100">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="title">新規登録</h5>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card-group">
+        <div class="card m-4">
+          <div class="card-body p-4">
+            <form method="POST" action="{{ url('register') }}">
+              @csrf
+              <h1>新規登録</h1>
+              <p class="text-muted">必要情報を入力してください</p>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="{{ asset('img/sprites/free.svg#cil-user') }}"></use>
+                    </svg>
+                  </span>
+                </div>
+                <input id="name" type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required placeholder="{{ __('string.Auth.Name') }}">
+                @if ($errors->first('name'))
+                  <div class="invalid-feedback validation">{{$errors->first('name')}}</div>
+                @endif
               </div>
-              <div class="card-body">
-                <form method="POST" action="{{ url('/register') }}">
-                  @csrf
 
-                    <div class="form-group row">
-                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('string.Auth.Name') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('string.Auth.E-Mail Address') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('string.Auth.Password') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('string.Auth.Confirm Password') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                        </div>
-                    </div>
-
-                    <div class="form-group row mb-0">
-                        <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('string.Auth.Register') }}
-                            </button>
-                        </div>
-                    </div>
-                </form>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="{{ asset('img/sprites/free.svg#cil-envelope-open') }}"></use>
+                    </svg>
+                  </span>
+                </div>
+                <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required placeholder="{{ __('string.Auth.E-Mail Address') }}">
+                @if ($errors->first('email'))
+                  <div class="invalid-feedback validation">{{$errors->first('email')}}</div>
+                @endif
               </div>
-            </div>
+
+              <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="{{ asset('img/sprites/free.svg#cil-lock-locked') }}"></use>
+                    </svg>
+                  </span>
+                </div>
+                <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" required placeholder="{{ __('string.Auth.Password') }}">
+                @if ($errors->first('password'))
+                  <div class="invalid-feedback validation">{{$errors->first('password')}}</div>
+                @endif
+              </div>
+
+              <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="{{ asset('img/sprites/free.svg#cil-lock-locked') }}"></use>
+                    </svg>
+                  </span>
+                </div>
+                <input id="password_confirmation" name="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" required placeholder="{{ __('string.Auth.Confirm Password') }}">
+              </div>
+
+              <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="{{ asset('img/sprites/free.svg#cil-shield-alt') }}"></use>
+                    </svg>
+                  </span>
+                </div>
+                <select class="form-control" name="role">
+                  <option value="">権限選択</option>
+                  @foreach ($roleList as $key => $value)
+                    <option value="{{ $key }}"
+                      @if (old('role') == $key)
+                        selected="selected"
+                      @endif
+                    >{{ $value }}</option>
+                  @endforeach
+                </select>
+              </div>
+
+              <button class="btn btn-block btn-success" type="submit">{{ __('string.Auth.Register') }}</button>
+            </form>
           </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-
-{{-- フッター --}}
-@include("layouts.footer")
 
 {{-- ここまでページ本体のコード --}}
 @endsection
